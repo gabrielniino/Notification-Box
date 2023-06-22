@@ -2,4 +2,4 @@ To do:
 ----
 
 - Estilização em CSS
-- Revisão do Objeto JS
+- Implementar função de animação do botão de alerta JS
