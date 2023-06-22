@@ -1,0 +1,36 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notification-box {
+    width: 130px;
+    height: 130px;
+    background-color: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.notification-item {
+    border: 1px solid red;
+}
+
+.notification-box .notification-list {
+    background-color: white;
+    padding: 10px;
+}
+
+.notification-box .notification-item {
+    margin-bottom: 5px;
+    cursor: pointer;
+}
