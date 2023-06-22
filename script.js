@@ -94,7 +94,7 @@ NotificationBox.prototype.hideNotificationList = function () {
 };
 
 NotificationBox.prototype.updateNotificationCount = function () {
-    // Implementar a atualização do contador de notificações
+    this.icon.textContent = this.notificationCount > 0 ? this.notificationCount : '';
 };
 
 NotificationBox.prototype.animateIcon = function () {
