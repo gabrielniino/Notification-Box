@@ -6,31 +6,38 @@
 
 body {
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: auto;
 }
 
-.notification-box {
-    width: 130px;
-    height: 130px;
-    background-color: #ccc;
+header {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    height: 4rem;
+    width: auto;
+    background-color: #333;
+}
+
+.button_icon {
+    max-width: 100%; /* Largura máxima da imagem é igual à largura da div */
+    height: auto; /* Manter a proporção original da imagem */
+  }
+
+.notification-box {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
+    background-color: #ccc;
 }
 
 .notification-item {
-    border: 1px solid red;
-}
-
-.notification-box .notification-list {
-    background-color: white;
-    padding: 10px;
-}
-
-.notification-box .notification-item {
-    margin-bottom: 5px;
-    cursor: pointer;
+    position: fixed;
+    top: 4rem;
+    right: 22.6rem;
+    min-height: 400px;
+    min-width: 300px;
+    border: 1px solid #444;
 }

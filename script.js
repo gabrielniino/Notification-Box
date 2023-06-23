@@ -62,6 +62,9 @@ NotificationBox.prototype.showNotificationList = function () {
         notificationItem.className = 'notification-item';
 
         // Cria elementos para exibir o título, texto e data da notificação
+        var titleContainer = document.createElement('h2');
+        titleContainer.textContent = 'Lista de Notificações';
+
         var titleElement = document.createElement('h3');
         titleElement.textContent = notification.titulo;
 
@@ -72,6 +75,7 @@ NotificationBox.prototype.showNotificationList = function () {
         dateElement.textContent = notification.data;
 
         // Adiciona os elementos à notificação
+        notificationItem.appendChild(titleContainer);
         notificationItem.appendChild(titleElement);
         notificationItem.appendChild(textElement);
         notificationItem.appendChild(dateElement);
