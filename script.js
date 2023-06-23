@@ -116,7 +116,7 @@ NotificationBox.prototype.animateIcon = function () {
     // Implementar a animação do ícone
 };
 
-// Aguarde até que o DOM seja totalmente carregado
+// Aguardar até que o DOM seja totalmente carregado
 document.addEventListener('DOMContentLoaded', function () {
     var container = document.getElementById('notification-box');
     var notificationBox = new NotificationBox();
