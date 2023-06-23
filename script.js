@@ -9,16 +9,27 @@ function NotificationBox() {
         texto: 'Isso é uma notificação de teste.',
         data: '2023-06-23',
         lido: false,
-        click: function () {
-            console.log('Notificaçao clicada');
-        }
     }];
     this.notificationListVisible = false; // Estado inicial da lista de notificações
 
     var self = this;
 
-    // Adiciona um evento de clique ao ícone de notificação.
-    this.notif.addEventListener('click', function () {
+    // Cria o elemento de ícone de notificação
+    var iconElement = document.createElement('div');
+    iconElement.className = 'notification-icon';
+    this.notif.appendChild(iconElement);
+
+    // Cria o elemento img para o ícone
+    var imgElement = document.createElement('img');
+    imgElement.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAlUlEQVR4nGNgGElAhYGB4Q4Ug9hUB5UMDAz/oRjEphpgZ2BgyIO6HGbBbQYGhlyoHEVAhoGB4SKSwej4AgMDgzQlLr+Ix3BkS8jySQERhsMwKAhJBqdJsOAEORZ8I8GCr+RY8J9EPGoBw2gQoYAGMlJRBwMNDf9PiiXkGv6f3PxAN/AYyZWPaGGBJ9QSkOEetLBgcAIABRa2/fuEyLwAAAAASUVORK5CYII='; // Defina o caminho da imagem desejada
+
+    // Adiciona o elemento img ao ícone de notificação
+    iconElement.appendChild(imgElement);
+
+    this.notif.appendChild(iconElement);
+
+    // Adiciona o evento de clique ao ícone de notificação
+    iconElement.addEventListener('click', function () {
         if (self.notificationListVisible) {
             self.hideNotificationList();
         } else {
@@ -27,30 +38,30 @@ function NotificationBox() {
     });
 }
 
-NotificationBox.prototype.add = function (notification) {
-    this.notifications.push(notification);
-    this.notificationCount++;
-    this.updateNotificationCount();
-    this.animateIcon();
-};
+// NotificationBox.prototype.add = function (notification) {
+//     this.notifications.push(notification);
+//     this.notificationCount++;
+//     this.updateNotificationCount();
+//     this.animateIcon();
+// };
 
-NotificationBox.prototype.del = function (notificationId) {
-    this.notifications = this.notifications.filter(function (notification) {
-        return notification.id !== notificationId;
-    });
-    this.notificationCount = this.notifications.length;
-    this.updateNotificationCount();
-};
+// NotificationBox.prototype.del = function (notificationId) {
+//     this.notifications = this.notifications.filter(function (notification) {
+//         return notification.id !== notificationId;
+//     });
+//     this.notificationCount = this.notifications.length;
+//     this.updateNotificationCount();
+// };
 
-NotificationBox.prototype.up = function (notification) {
-    var foundNotification = this.notifications.find(function (n) {
-        return n.id === notification.id;
-    });
+// NotificationBox.prototype.up = function (notification) {
+//     var foundNotification = this.notifications.find(function (n) {
+//         return n.id === notification.id;
+//     });
 
-    if (foundNotification) {
-        foundNotification.lido = notification.lido;
-    }
-};
+//     if (foundNotification) {
+//         foundNotification.lido = notification.lido;
+//     }
+// };
 
 NotificationBox.prototype.showNotificationList = function () {
     var notificationList = document.createElement('div');
