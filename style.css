@@ -19,12 +19,6 @@ header {
     border-bottom: 1px solid #444;
 }
 
-.button_icon {
-    max-width: 100%; /* Largura máxima da imagem é igual à largura da div */
-    height: auto; /* Manter a proporção original da imagem */
-    background-color: aqua;
-}
-
 .notification-box {
     display: flex;
     justify-content: center;
