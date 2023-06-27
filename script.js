@@ -1,72 +1,126 @@
 // Função construtora
-function NotificationBox() {
-    this.notif = document.createElement('div');
-    this.notif.className = 'notification-box';
+function NotificationBox(Local) {
+
+    // variaveis do objeto
+    this.classname = 'notification-box';
+    this.classList = 'notification-list';
     this.notificationCount = 0;
-    this.notifications = [{
-        id: '2',
-        titulo: 'Primeira notificação',
-        texto: 'Isso é uma notificação de teste.',
-        data: '2023-06-23',
-        lido: false,
-        click: function () {
-            console.log('Notificaçao clicada');
-        }
-    }];
-    this.notificationListVisible = false; // Estado inicial da lista de notificações
 
-    var self = this;
-
-    // Adiciona um evento de clique ao ícone de notificação.
-    this.notif.addEventListener('click', function () {
-        if (self.notificationListVisible) {
-            self.hideNotificationList();
-        } else {
-            self.showNotificationList();
-        }
-    });
-}
-
-NotificationBox.prototype.add = function (notification) {
-    this.notifications.push(notification);
-    this.notificationCount++;
-    this.updateNotificationCount();
-    this.animateIcon();
-};
-
-NotificationBox.prototype.del = function (notificationId) {
-    this.notifications = this.notifications.filter(function (notification) {
-        return notification.id !== notificationId;
-    });
-    this.notificationCount = this.notifications.length;
-    this.updateNotificationCount();
-};
-
-NotificationBox.prototype.up = function (notification) {
-    var foundNotification = this.notifications.find(function (n) {
-        return n.id === notification.id;
-    });
-
-    if (foundNotification) {
-        foundNotification.lido = notification.lido;
+    this.construct = function (Local) {
+        this.area(Local);
+        this.criarIcone();
+        this.showNotificationList();
+        this.hideNotificationList();
     }
-};
 
-NotificationBox.prototype.showNotificationList = function () {
-    var notificationList = document.createElement('div');
-    notificationList.className = 'notification-list';
+    // constroi o objeto
+    this.area = function (local) {
+        this.notif = document.createElement('div'); // area do objeto
+        this.notif.className = this.classname;
+        local.appendChild(this.notif);
+        return true;
+    }
 
-    for (var i = 0; i < this.notifications.length; i++) {
-        var notification = this.notifications[i];
-        var notificationItem = document.createElement('div');
-        notificationItem.className = 'notification-item';
+    this.criarIcone = function () {
 
-        // Cria elementos para exibir o título, texto e data da notificação
+        // Cria o elemento de ícone de notificação
+        var iconElement = document.createElement('div');
+        iconElement.className = 'notification-icon';
+
+        // Cria o elemento img para o ícone
+        var imgElement = document.createElement('img');
+        imgElement.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAlUlEQVR4nGNgGElAhYGB4Q4Ug9hUB5UMDAz/oRjEphpgZ2BgyIO6HGbBbQYGhlyoHEVAhoGB4SKSwej4AgMDgzQlLr+Ix3BkS8jySQERhsMwKAhJBqdJsOAEORZ8I8GCr+RY8J9EPGoBw2gQoYAGMlJRBwMNDf9PiiXkGv6f3PxAN/AYyZWPaGGBJ9QSkOEetLBgcAIABRa2/fuEyLwAAAAASUVORK5CYII='; // Defina o caminho da imagem desejada
+
+        // Adiciona o elemento img ao ícone de notificação
+        iconElement.appendChild(imgElement);
+
+        this.notif.appendChild(iconElement);
+
+        iconElement.cls = this; // referencia da classe obj alocado na memoria;
+
+        // Adiciona o evento de clique ao ícone de notificação
+        iconElement.addEventListener('click', function () {
+            var cls = this.cls;
+
+            if (cls.notificationListVisible) {
+                cls.hideNotificationList();
+            } else {
+                cls.showNotificationList();
+            }
+        });
+
+
+    }
+
+    this.showNotificationList = function () {
+
+        // aqui se ja exite apenas mostramos ela
+        if (this.notificationList) {
+            this.notificationList.style.display = '';
+            this.notificationListVisible = true;
+            return true; // paro a execução para ecitar criar os objetos duplicados
+        }
+
+        var notificationList = document.createElement('div');
+        notificationList.className = this.classList;
+
+        // Cria o elemento de título da lista de notificações
         var titleContainer = document.createElement('h2');
         titleContainer.textContent = 'Lista de Notificações';
 
+        // Adiciona o título à lista de notificações
+        notificationList.appendChild(titleContainer);
+
+        this.notificationList = notificationList; // adicionei só para ter o controle logo acima se ja existe  
+        this.notif.appendChild(notificationList);
+        this.notificationListVisible = true;
+    };
+
+    // aqui no hide vc pode apenas dar um display none do css para que ele perca a visibilidade apenas e deixe tudo construido
+    this.hideNotificationList = function () {
+
+        if (this.notificationListVisible) {
+
+            var notificationList = this.notificationList;
+
+            // this.notif.removeChild(notificationList);
+            notificationList.style.display = 'none';
+            this.notificationListVisible = false;
+        }
+    };
+
+    this.updateNotificationCount = function () {
+        this.icon.textContent = this.notificationCount > 0 ? this.notificationCount : '';
+    };
+
+    this.animateIcon = function () {
+        // Implementar a animação do ícone
+    };
+
+    this.add = function (notification) {
+        var notificationContainer = document.createElement('div');
+        notificationContainer.className = 'notification-container';
+
+        var notificationContent = document.createElement('div');
+        notificationContent.className = 'notification-content';
+
+        var imgContainer = document.createElement('div');
+        imgContainer.className = 'img-container';
+
+        var contentContainer = document.createElement('div');
+        contentContainer.className = 'content-container';
+
+        var dataContainer = document.createElement('div');
+        dataContainer.className = 'data-container';
+
+        var imgUsuario = document.createElement('img');
+        imgUsuario.src = 'https://img.freepik.com/fotos-gratis/homem-bonito-e-confiante-sorrindo-com-as-maos-cruzadas-no-peito_176420-18743.jpg?w=2000';
+
         var titleElement = document.createElement('h3');
         titleElement.textContent = notification.titulo;
+
+        var subTitleElement = document.createElement('h4');
+        subTitleElement.textContent = notification.subtitulo;
 
         var textElement = document.createElement('p');
         textElement.textContent = notification.texto;
@@ -74,52 +128,31 @@ NotificationBox.prototype.showNotificationList = function () {
         var dateElement = document.createElement('span');
         dateElement.textContent = notification.data;
 
-        // Adiciona os elementos à notificação
-        notificationItem.appendChild(titleContainer);
-        notificationItem.appendChild(titleElement);
-        notificationItem.appendChild(textElement);
-        notificationItem.appendChild(dateElement);
+        imgContainer.appendChild(imgUsuario);
+        contentContainer.appendChild(titleElement);
+        contentContainer.appendChild(subTitleElement);
+        contentContainer.appendChild(textElement);
+        dataContainer.appendChild(dateElement);
 
-        notificationItem.addEventListener('click', notification.click);
-        notificationList.appendChild(notificationItem);
+        notificationContent.appendChild(imgContainer);
+        notificationContent.appendChild(contentContainer);
+        notificationContent.appendChild(dataContainer);
+
+        notificationContent.addEventListener('click', notification.click);
+        notificationContainer.appendChild(notificationContent);
+        this.notificationList.appendChild(notificationContainer);
+        this.notificationCount++;
+
+        return notificationContainer;
     }
 
 
-    this.notif.appendChild(notificationList);
-    this.notificationListVisible = true;
-};
+    // ao criar o objeto ele inica o funcionamento 
+    this.construct(Local);
+}
 
-NotificationBox.prototype.hideNotificationList = function () {
-    if (this.notificationListVisible) {
-        var notificationList = this.notif.querySelector('.notification-list');
-        this.notif.removeChild(notificationList);
-        this.notificationListVisible = false;
-    }
-};
-
-NotificationBox.prototype.updateNotificationCount = function () {
-    this.icon.textContent = this.notificationCount > 0 ? this.notificationCount : '';
-};
-
-NotificationBox.prototype.animateIcon = function () {
-    // Implementar a animação do ícone
-};
-
-// Aguarde até que o DOM seja totalmente carregado
+// Aguardar até que o DOM seja totalmente carregado
 document.addEventListener('DOMContentLoaded', function () {
     var container = document.getElementById('notification-box');
-    var notificationBox = new NotificationBox();
-    container.appendChild(notificationBox.notif);
-
-    // // Teste adicionando notificações
-    // notificationBox.add({
-    //     id: '1',
-    //     titulo: 'Nova notificação',
-    //     texto: 'Isso é uma notificação de teste.',
-    //     data: '2023-06-22',
-    //     lido: false,
-    //     click: function () {
-    //         console.log('Notificação clicada');
-    //     }
-    // });
+    notificationBox = new NotificationBox(container);
 });

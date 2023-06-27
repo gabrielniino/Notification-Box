@@ -1,43 +1,149 @@
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-}
-
 body {
-    height: 100vh;
-    width: auto;
+    background-color: #dedede;
 }
 
-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 4rem;
-    width: auto;
-    background-color: #333;
-}
-
-.button_icon {
-    max-width: 100%; /* Largura máxima da imagem é igual à largura da div */
-    height: auto; /* Manter a proporção original da imagem */
-  }
-
+/* Estilos para a área da caixa de notificação */
 .notification-box {
-    height: 40px;
-    width: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    background-color: #ccc;
+    position: relative;
+    max-height: 40rem;
+    max-width: 20rem;
 }
 
-.notification-item {
-    position: fixed;
-    top: 4rem;
-    right: 22.6rem;
-    min-height: 400px;
-    min-width: 300px;
-    border: 1px solid #444;
+/* Estilos para o ícone de notificação */
+.notification-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    cursor: pointer;
+}
+img {
+    max-width: 100%;
+    /* Largura máxima da imagem é igual à largura da div */
+    height: auto;
+    /* Manter a proporção original da imagem */
+}
+
+/* Estilos para a lista de notificações */
+.notification-list {
+    top: 100%;
+    right: 0;
+    width: 280px;
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 10px;
+}
+
+.notification-list h2 {
+    display: flex;
+    justify-content: center;
+}
+
+.notification-container {
+    display: flex;
+}
+
+.notification-content {
+    display: flex;
+    padding-top: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.notification-content:hover {
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
+
+.img-container {
+    display: flex;
+    justify-content: center;
+    width: 25%;
+}
+
+.img-container img{
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
+
+.content-container {
+    width: 50%;
+}
+
+.content-container h3 {
+}
+
+.data-container {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    width: 20%;
+}
+
+.notification-title {
+    height: 10px;
+    width: auto;
+}
+
+.notification-content h3 {
+    margin-top: 0;
+    font-size: 13px;
+}
+
+.notification-content h4 {
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
+.notification-content p {
+    margin: 0;
+    font-size: 12px;
+}
+
+.notification-content span {
+    font-size: 12px;
+    color: #888;
+}
+
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #397524 #DFE9EB;
+}
+
+/* Barra de rolagem */
+*::-webkit-scrollbar {
+    width: 10px;
+    width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #DFE9EB;
+}
+
+*::-webkit-scrollbar-track:hover {
+    background-color: #B8C0C2;
+}
+
+*::-webkit-scrollbar-track:active {
+    background-color: #B8C0C2;
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #a7a6a6;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: #7b7b7b;
+}
+
+*::-webkit-scrollbar-thumb:active {
+    background-color: #4d4d4d;
 }
