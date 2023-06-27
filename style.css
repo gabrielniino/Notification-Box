@@ -74,9 +74,6 @@ img {
     width: 50%;
 }
 
-.content-container h3 {
-}
-
 .data-container {
     display: flex;
     justify-content: flex-end;
