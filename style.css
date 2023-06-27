@@ -1,5 +1,37 @@
+/*====================== Google Fonts ===================*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+    /*============== Font and typograhy ===============*/
+    --body-font: 'Poppins', sans-serif;
+
+    /*========= Colors =========*/
+    --theme-color: #dedede;
+    --text-color: #000;
+    --subtitle-color: #888;
+    --container-color: #fff;
+}
+
+/*==================== Base ======================*/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    background-color: #dedede;
+    background-color: var(--theme-color);
+    font-family: var(--body-font);
+    color: var(--text-color);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 /* Estilos para a área da caixa de notificação */
@@ -18,21 +50,23 @@ body {
     height: 2.5rem;
     cursor: pointer;
 }
-img {
-    max-width: 100%;
-    /* Largura máxima da imagem é igual à largura da div */
-    height: auto;
-    /* Manter a proporção original da imagem */
+
+.notification-count {
+    font-size: 0.5rem;
+    height: 0.625rem;
+}
+
+.icon-container {
+    display: flex;
 }
 
 /* Estilos para a lista de notificações */
 .notification-list {
     top: 100%;
-    right: 0;
-    width: 280px;
-    max-height: 400px;
+    width: 25rem;
+    max-height: 25rem;
     overflow-y: auto;
-    background-color: #fff;
+    background-color: var(--container-color);
     border-radius: 5px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     padding: 10px;
@@ -41,6 +75,7 @@ img {
 .notification-list h2 {
     display: flex;
     justify-content: center;
+    padding-bottom: 10px;
 }
 
 .notification-container {
@@ -50,7 +85,7 @@ img {
 .notification-content {
     display: flex;
     padding-top: 10px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid rgb(219, 219, 219);
 }
 
 .notification-content:hover {
@@ -61,17 +96,20 @@ img {
 .img-container {
     display: flex;
     justify-content: center;
-    width: 25%;
+    width: 15%;
 }
 
-.img-container img{
+.img-container img {
     border-radius: 50%;
     height: 50px;
     width: 50px;
 }
 
 .content-container {
-    width: 50%;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    padding-left: 10px;
 }
 
 .data-container {
@@ -92,7 +130,6 @@ img {
 }
 
 .notification-content h4 {
-    margin-bottom: 5px;
     font-size: 12px;
 }
 
@@ -103,44 +140,29 @@ img {
 
 .notification-content span {
     font-size: 12px;
-    color: #888;
+    color: var(--subtitle-color);
 }
 
-
-/* Firefox */
-* {
-    scrollbar-width: thin;
-    scrollbar-color: #397524 #DFE9EB;
-}
-
-/* Barra de rolagem */
+/*============== Scroll bar ===============*/
 *::-webkit-scrollbar {
-    width: 10px;
     width: 10px;
 }
 
 *::-webkit-scrollbar-track {
-    border-radius: 5px;
     background-color: #DFE9EB;
+    border-radius: 5px;
 }
 
-*::-webkit-scrollbar-track:hover {
-    background-color: #B8C0C2;
+*::-webkit-scrollbar-thumb {
+    background-color: #a7a6a6;
+    border-radius: 5px;
 }
 
 *::-webkit-scrollbar-track:active {
     background-color: #B8C0C2;
 }
 
-*::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background-color: #a7a6a6;
-}
-
-*::-webkit-scrollbar-thumb:hover {
-    background-color: #7b7b7b;
-}
-
+*::-webkit-scrollbar-thumb:hover,
 *::-webkit-scrollbar-thumb:active {
-    background-color: #4d4d4d;
+    background-color: #7b7b7b;
 }

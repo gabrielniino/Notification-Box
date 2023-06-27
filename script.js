@@ -27,12 +27,28 @@ function NotificationBox(Local) {
         var iconElement = document.createElement('div');
         iconElement.className = 'notification-icon';
 
+        var iconContainer = document.createElement('div');
+        iconContainer.className = 'icon-container';
+
+        var contContainer = document.createElement('div');
+        contContainer.className = 'cont-container';
+
         // Cria o elemento img para o ícone
         var imgElement = document.createElement('img');
         imgElement.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAlUlEQVR4nGNgGElAhYGB4Q4Ug9hUB5UMDAz/oRjEphpgZ2BgyIO6HGbBbQYGhlyoHEVAhoGB4SKSwej4AgMDgzQlLr+Ix3BkS8jySQERhsMwKAhJBqdJsOAEORZ8I8GCr+RY8J9EPGoBw2gQoYAGMlJRBwMNDf9PiiXkGv6f3PxAN/AYyZWPaGGBJ9QSkOEetLBgcAIABRa2/fuEyLwAAAAASUVORK5CYII='; // Defina o caminho da imagem desejada
 
         // Adiciona o elemento img ao ícone de notificação
-        iconElement.appendChild(imgElement);
+        iconContainer.appendChild(imgElement);
+        iconElement.appendChild(iconContainer);
+        iconElement.appendChild(contContainer);
+
+        // Cria o elemento span para o número de notificações
+        var countElement = document.createElement('span');
+        countElement.className = 'notification-count';
+        countElement.textContent = this.notificationCount > 0 ? this.notificationCount : '';
+
+        // Adiciona o elemento span ao ícone de notificação
+        contContainer.appendChild(countElement);
 
         this.notif.appendChild(iconElement);
 
@@ -48,8 +64,6 @@ function NotificationBox(Local) {
                 cls.showNotificationList();
             }
         });
-
-
     }
 
     this.showNotificationList = function () {
@@ -66,7 +80,7 @@ function NotificationBox(Local) {
 
         // Cria o elemento de título da lista de notificações
         var titleContainer = document.createElement('h2');
-        titleContainer.textContent = 'Lista de Notificações';
+        titleContainer.textContent = 'Notificações';
 
         // Adiciona o título à lista de notificações
         notificationList.appendChild(titleContainer);
@@ -86,15 +100,19 @@ function NotificationBox(Local) {
             // this.notif.removeChild(notificationList);
             notificationList.style.display = 'none';
             this.notificationListVisible = false;
+            this.updateNotificationCount();
         }
     };
 
     this.updateNotificationCount = function () {
-        this.icon.textContent = this.notificationCount > 0 ? this.notificationCount : '';
+        var countElement = this.notif.querySelector('.notification-count');
+        if (countElement) {
+            countElement.textContent = this.notificationCount > 0 ? this.notificationCount : '';
+        }
     };
 
     this.animateIcon = function () {
-        // Implementar a animação do ícone
+        // Implementar a lógica de animação
     };
 
     this.add = function (notification) {
@@ -142,10 +160,10 @@ function NotificationBox(Local) {
         notificationContainer.appendChild(notificationContent);
         this.notificationList.appendChild(notificationContainer);
         this.notificationCount++;
+        this.updateNotificationCount();
 
         return notificationContainer;
     }
-
 
     // ao criar o objeto ele inica o funcionamento 
     this.construct(Local);
