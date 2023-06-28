@@ -51,14 +51,6 @@ img {
     cursor: pointer;
 }
 
-/* .cont-container {
-    background-color: red;
-    border: #fff 1px solid;
-    height: 15px;
-    width: 15px;
-    border-radius: 50%;
-} */
-
 .notification-count {
     display: flex;
     border: solid white 1px;
@@ -84,8 +76,7 @@ img {
 
 /* Estilos para a lista de notificações */
 .notification-list {
-    top: 100%;
-    width: 25rem;
+    width: 26rem;
     max-height: 25rem;
     overflow-y: auto;
     background-color: var(--container-color);
