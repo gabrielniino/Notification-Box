@@ -40,7 +40,7 @@ function NotificationBox(Local) {
         // Adiciona o elemento img ao ícone de notificação
         iconContainer.appendChild(imgElement);
         iconElement.appendChild(iconContainer);
-        iconElement.appendChild(contContainer);
+        iconContainer.appendChild(contContainer);
 
         // Cria o elemento span para o número de notificações
         var countElement = document.createElement('span');
@@ -107,12 +107,17 @@ function NotificationBox(Local) {
     this.updateNotificationCount = function () {
         var countElement = this.notif.querySelector('.notification-count');
         if (countElement) {
-            countElement.textContent = this.notificationCount > 0 ? this.notificationCount : '';
+            if (this.notificationCount > 0) {
+                if (this.notificationCount > 999) {
+                    countElement.textContent = '999+';
+                } else {
+                    countElement.textContent = this.notificationCount;
+                }
+                countElement.style.display = 'flex';
+            } else {
+                countElement.style.display = 'none';
+            }
         }
-    };
-
-    this.animateIcon = function () {
-        // Implementar a lógica de animação
     };
 
     this.add = function (notification) {
@@ -141,7 +146,14 @@ function NotificationBox(Local) {
         subTitleElement.textContent = notification.subtitulo;
 
         var textElement = document.createElement('p');
-        textElement.textContent = notification.texto;
+        textElement.textContent = truncateText(notification.texto, 33); // Limite de 50 caracteres     
+
+        function truncateText(text, limit) {
+            if (text.length <= limit) {
+                return text;
+            }
+            return text.substring(0, limit) + '...';
+        }        
 
         var dateElement = document.createElement('span');
         dateElement.textContent = notification.data;

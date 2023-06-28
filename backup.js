@@ -29,7 +29,7 @@ function NotificationBox(Local) {
 
         var iconContainer = document.createElement('div');
         iconContainer.className = 'icon-container';
-        
+
         var contContainer = document.createElement('div');
         contContainer.className = 'cont-container';
 
@@ -40,7 +40,7 @@ function NotificationBox(Local) {
         // Adiciona o elemento img ao ícone de notificação
         iconContainer.appendChild(imgElement);
         iconElement.appendChild(iconContainer);
-        iconElement.appendChild(contContainer);
+        iconContainer.appendChild(contContainer);
 
         // Cria o elemento span para o número de notificações
         var countElement = document.createElement('span');
@@ -107,12 +107,18 @@ function NotificationBox(Local) {
     this.updateNotificationCount = function () {
         var countElement = this.notif.querySelector('.notification-count');
         if (countElement) {
-            countElement.textContent = this.notificationCount > 0 ? this.notificationCount : '';
+            if (this.notificationCount > 0) {
+                countElement.style.display = 'flex';
+                countElement.textContent = this.notificationCount;
+            } else {
+                countElement.style.display = 'none';
+            }
         }
     };
 
+
     this.animateIcon = function () {
-        // Implementar a animação do ícone
+        // Implementar a lógica de animação
     };
 
     this.add = function (notification) {
@@ -161,7 +167,7 @@ function NotificationBox(Local) {
         this.notificationList.appendChild(notificationContainer);
         this.notificationCount++;
         this.updateNotificationCount();
-        
+
         return notificationContainer;
     }
 
