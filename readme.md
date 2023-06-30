@@ -1,5 +1,3 @@
-To do:
-----
+## Notification-Box
 
-- Estilização em CSS
-- Implementar função de animação do botão de alerta JS
+Implementação da funcionalidade Notification-Box atraves de objeto Java Script.
